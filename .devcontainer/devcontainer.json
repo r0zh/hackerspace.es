@@ -1,0 +1,25 @@
+{
+	"name": "Hackerspace Dev Container",
+	"dockerComposeFile": "./docker-compose-dev.yml",
+	"service": "app",
+	"remoteUser": "node",
+	"workspaceFolder": "/home/node/app",
+	"features": {
+		"ghcr.io/devcontainers/features/common-utils:2": {},
+		"ghcr.io/devcontainers/features/git:1": {}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"cweijan.vscode-postgresql-client2",
+				"bradlc.vscode-tailwindcss",
+				"biomejs.biome"
+			],
+			"settings": {
+				"terminal.integrated.defaultProfile.linux": "zsh"
+			}
+		}
+	},
+	"forwardPorts": [3000],
+	"postCreateCommand": "pnpm install"
+}

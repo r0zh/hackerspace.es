@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - ../:/home/node/app
+      - node_modules:/home/node/app/node_modules
+      - pnpm-store:/pnpm  # Add pnpm store volume
+    working_dir: /home/node/app/
+    command: sleep infinity
+    depends_on:
+      - postgresql
+    env_file:
+      - ../.env
+    environment:
+      - PNPM_HOME=/pnpm
+
+  postgresql:
+    image: postgres:16
+    shm_size: 1g
+    restart: always
+    volumes:
+      - ../pg-init:/docker-entrypoint-initdb.d
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5440:5432
+    env_file:
+      - ../.env
+
+volumes:
+  data:
+  node_modules:
+  pnpm-store:  # Add pnpm store volume
+  postgres_data:
+    driver: local
