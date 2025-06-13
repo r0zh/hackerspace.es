@@ -5,6 +5,7 @@
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
+		"fmt": "pnpm biome format --write",
 		"build": "cross-env NODE_OPTIONS=--no-deprecation next build",
 		"postbuild": "next-sitemap --config next-sitemap.config.cjs",
 		"dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
