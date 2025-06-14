@@ -71,6 +71,7 @@ export interface Config {
     posts: Post;
     media: Media;
     categories: Category;
+    events: Event;
     users: User;
     redirects: Redirect;
     forms: Form;
@@ -87,6 +88,7 @@ export interface Config {
     posts: PostsSelect<false> | PostsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
+    events: EventsSelect<false> | EventsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
@@ -191,7 +193,7 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | CalendarBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -729,6 +731,60 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CalendarBlock".
+ */
+export interface CalendarBlock {
+  title?: string | null;
+  height?: number | null;
+  view?: ('month' | 'week' | 'day' | 'agenda') | null;
+  /**
+   * Choose how to populate calendar events
+   */
+  dataSource?: ('manual' | 'all' | 'upcoming' | 'category') | null;
+  /**
+   * Filter events by category
+   */
+  categoryFilter?: ('meeting' | 'conference' | 'workshop' | 'social' | 'training' | 'other') | null;
+  /**
+   * Maximum number of events to display
+   */
+  eventLimit?: number | null;
+  /**
+   * Manual events for this calendar (only shown when using manual data source)
+   */
+  events?:
+    | {
+        title: string;
+        start: string;
+        end: string;
+        description?: string | null;
+        allDay?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'calendar';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events".
+ */
+export interface Event {
+  id: number;
+  title: string;
+  description?: string | null;
+  start: string;
+  end: string;
+  allDay?: boolean | null;
+  location?: string | null;
+  category?: ('meeting' | 'conference' | 'workshop' | 'social' | 'training' | 'other') | null;
+  status?: ('scheduled' | 'cancelled' | 'completed' | 'postponed') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -917,6 +973,10 @@ export interface PayloadLockedDocument {
         value: number | Category;
       } | null)
     | ({
+        relationTo: 'events';
+        value: number | Event;
+      } | null)
+    | ({
         relationTo: 'users';
         value: number | User;
       } | null)
@@ -1018,6 +1078,7 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        calendar?: T | CalendarBlockSelect<T>;
       };
   meta?:
     | T
@@ -1114,6 +1175,30 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CalendarBlock_select".
+ */
+export interface CalendarBlockSelect<T extends boolean = true> {
+  title?: T;
+  height?: T;
+  view?: T;
+  dataSource?: T;
+  categoryFilter?: T;
+  eventLimit?: T;
+  events?:
+    | T
+    | {
+        title?: T;
+        start?: T;
+        end?: T;
+        description?: T;
+        allDay?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -1258,6 +1343,22 @@ export interface CategoriesSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events_select".
+ */
+export interface EventsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  start?: T;
+  end?: T;
+  allDay?: T;
+  location?: T;
+  category?: T;
+  status?: T;
   updatedAt?: T;
   createdAt?: T;
 }
