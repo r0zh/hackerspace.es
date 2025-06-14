@@ -42,12 +42,10 @@ const EventModal: React.FC<{
 
 		if (isOpen) {
 			document.addEventListener("keydown", handleEscape);
-			document.body.style.overflow = "hidden"; // Prevent background scrolling
 		}
 
 		return () => {
 			document.removeEventListener("keydown", handleEscape);
-			document.body.style.overflow = "unset";
 		};
 	}, [isOpen, onClose]);
 
@@ -71,7 +69,7 @@ const EventModal: React.FC<{
 
 	return (
 		<div
-			className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+			className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
 			onClick={(e) => {
 				// Only close if clicking directly on the backdrop, not on any child elements
 				if (e.target === e.currentTarget) {
@@ -85,16 +83,22 @@ const EventModal: React.FC<{
 			}}
 			tabIndex={-1}
 		>
-			<dialog
-				open={isOpen}
-				className="bg-white rounded-lg p-6 max-w-md w-full mx-4 shadow-xl border-0"
+			<div
+				className="bg-white rounded-lg p-6 max-w-md w-full shadow-xl border-0 relative"
 				onClick={(e) => e.stopPropagation()}
+				onKeyDown={(e) => e.stopPropagation()}
 			>
 				<div className="flex justify-between items-start mb-4">
 					<h3 className="text-xl font-bold text-gray-900">{event.title}</h3>
 					<button
 						type="button"
 						onClick={onClose}
+						onKeyDown={(e) => {
+							if (e.key === "Enter" || e.key === " ") {
+								e.preventDefault();
+								onClose();
+							}
+						}}
 						className="text-gray-400 hover:text-gray-600 text-xl font-bold"
 						aria-label="Close modal"
 					>
@@ -134,7 +138,7 @@ const EventModal: React.FC<{
 						Close
 					</button>
 				</div>
-			</dialog>
+			</div>
 		</div>
 	);
 };

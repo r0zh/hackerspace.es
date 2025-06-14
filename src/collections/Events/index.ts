@@ -58,23 +58,10 @@ export const Events: CollectionConfig = {
 			name: "category",
 			type: "select",
 			options: [
-				{ label: "Meeting", value: "meeting" },
 				{ label: "Conference", value: "conference" },
 				{ label: "Workshop", value: "workshop" },
 				{ label: "Social", value: "social" },
-				{ label: "Training", value: "training" },
 				{ label: "Other", value: "other" },
-			],
-		},
-		{
-			name: "status",
-			type: "select",
-			defaultValue: "scheduled",
-			options: [
-				{ label: "Scheduled", value: "scheduled" },
-				{ label: "Cancelled", value: "cancelled" },
-				{ label: "Completed", value: "completed" },
-				{ label: "Postponed", value: "postponed" },
 			],
 		},
 	],

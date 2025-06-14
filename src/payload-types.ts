@@ -778,8 +778,7 @@ export interface Event {
   end: string;
   allDay?: boolean | null;
   location?: string | null;
-  category?: ('meeting' | 'conference' | 'workshop' | 'social' | 'training' | 'other') | null;
-  status?: ('scheduled' | 'cancelled' | 'completed' | 'postponed') | null;
+  category?: ('conference' | 'workshop' | 'social' | 'other') | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1358,7 +1357,6 @@ export interface EventsSelect<T extends boolean = true> {
   allDay?: T;
   location?: T;
   category?: T;
-  status?: T;
   updatedAt?: T;
   createdAt?: T;
 }
