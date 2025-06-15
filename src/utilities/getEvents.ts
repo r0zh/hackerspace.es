@@ -31,17 +31,13 @@ export async function getEvents(
 	}
 }
 
-export async function getUpcomingEvents(limit = 10): Promise<Event[]> {
+export async function getUpcomingEvents(): Promise<Event[]> {
 	const now = new Date().toISOString();
 
 	return getEvents({
-		limit,
 		where: {
 			start: {
 				greater_than_equal: now,
-			},
-			status: {
-				not_equals: "cancelled",
 			},
 		},
 		sort: "start",
@@ -71,18 +67,11 @@ export async function getEventsByDateRange(
 	});
 }
 
-export async function getEventsByCategory(
-	category: string,
-	limit = 50,
-): Promise<Event[]> {
+export async function getEventsByCategory(category: string): Promise<Event[]> {
 	return getEvents({
-		limit,
 		where: {
 			category: {
 				equals: category,
-			},
-			status: {
-				not_equals: "cancelled",
 			},
 		},
 		sort: "start",

@@ -16,9 +16,8 @@ interface CalendarServerProps extends CalendarBlockProps {
 
 export async function CalendarServer({
 	className,
-	dataSource = "manual",
+	dataSource = "all",
 	categoryFilter,
-	eventLimit = 50,
 	...calendarProps
 }: CalendarServerProps) {
 	let events: Event[] = [];
@@ -26,19 +25,15 @@ export async function CalendarServer({
 	try {
 		switch (dataSource) {
 			case "upcoming":
-				events = await getUpcomingEvents(eventLimit || 50);
+				events = await getUpcomingEvents();
 				break;
 			case "category":
 				if (categoryFilter) {
-					events = await getEventsByCategory(categoryFilter, eventLimit || 50);
+					events = await getEventsByCategory(categoryFilter);
 				}
 				break;
-			case "all":
-				events = await getEvents({ limit: eventLimit || 50 });
-				break;
-			case "manual":
-				// Use the events from the CalendarBlock config
-				events = [];
+			default:
+				events = await getEvents();
 				break;
 		}
 	} catch (error) {
@@ -47,13 +42,6 @@ export async function CalendarServer({
 	}
 
 	return (
-		<CalendarBlock
-			{...calendarProps}
-			className={className}
-			dataSource={dataSource}
-			categoryFilter={categoryFilter}
-			eventLimit={eventLimit}
-			eventsList={events.length > 0 ? events : null}
-		/>
+		<CalendarBlock {...calendarProps} className={className} events={events} />
 	);
 }
