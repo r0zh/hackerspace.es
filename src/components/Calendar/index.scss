@@ -1,0 +1,105 @@
+// Let react-big-calendar use its default colors for SCSS compilation
+@import 'react-big-calendar/lib/sass/styles';
+
+// Override with comprehensive CSS custom properties for theme support
+// Today highlight
+.rbc-today {
+  background-color: hsl(var(--today-highlight));
+}
+
+// Event styling
+.rbc-event, 
+.rbc-day-slot .rbc-background-event {
+  background-color: hsl(var(--calendar-event-bg)) !important;
+  // border-color: hsl(var(--calendar-event-border)) !important;
+  color: hsl(var(--calendar-event-color)) !important;
+}
+
+.rbc-event.rbc-selected, 
+.rbc-day-slot .rbc-selected.rbc-background-event {
+  background-color: hsl(var(--calendar-event-bg) / 0.8) !important;
+}
+
+.rbc-event:focus,
+.rbc-day-slot .rbc-background-event:focus {
+  outline-color: hsl(var(--calendar-event-outline)) !important;
+}
+
+// Calendar borders and structure
+.rbc-calendar {
+  border-color: hsl(var(--calendar-border));
+}
+
+.rbc-row-bg {
+  right: 0;
+}
+
+// Out of range dates
+.rbc-off-range {
+  color: hsl(var(--calendar-out-of-range));
+}
+
+.rbc-off-range-bg {
+  background-color: hsl(var(--calendar-out-of-range-bg));
+}
+
+// Time and date selection
+.rbc-slot-selection {
+  background-color: hsl(var(--calendar-time-selection-bg));
+  color: hsl(var(--calendar-time-selection));
+}
+
+.rbc-selected-cell {
+  background-color: hsl(var(--calendar-date-selection-bg));
+}
+
+// Toolbar buttons
+.rbc-toolbar button {
+  color: hsl(var(--calendar-btn-color));
+  background-color: hsl(var(--calendar-btn-bg));
+  border-color: hsl(var(--calendar-btn-border));
+}
+
+.rbc-toolbar button:hover,
+.rbc-toolbar button:focus {
+  background-color: hsl(var(--calendar-btn-bg) / 0.9);
+  border-color: hsl(var(--calendar-btn-border) / 0.8);
+}
+
+.rbc-toolbar button:active,
+.rbc-toolbar button.rbc-active {
+  background-color: hsl(var(--calendar-btn-bg) / 0.8);
+  border-color: hsl(var(--calendar-btn-border) / 0.7);
+}
+
+// Current time indicator
+.rbc-current-time-indicator {
+  background-color: hsl(var(--calendar-current-time));
+}
+
+.rbc-time-header.rbc-overflowing{
+  margin-right: 0 !important; /* Fix for right margin in overflowing time header */
+}
+
+// Hide scrollbars to prevent column misalignment
+.rbc-time-content {
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.rbc-time-content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+// Also hide scrollbars in any other scrollable areas
+.rbc-time-view,
+.rbc-agenda-view {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.rbc-time-view::-webkit-scrollbar,
+.rbc-agenda-view::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}

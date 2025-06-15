@@ -1,5 +1,5 @@
 {
-  "npm.packageManager": "pnpm",
-  "biome.enabled": true,
-  "editor.defaultFormatter": "biomejs.biome"
+	"npm.packageManager": "pnpm",
+	"biome.enabled": true,
+	"editor.defaultFormatter": "biomejs.biome"
 }
