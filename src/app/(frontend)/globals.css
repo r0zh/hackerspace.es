@@ -1,103 +1,139 @@
+/* Import react-big-calendar styles */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-size: unset;
-    font-weight: unset;
-  }
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-size: unset;
+		font-weight: unset;
+	}
 
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+	:root {
+		--background: 0 0% 100%;
+		--foreground: 222.2 84% 4.9%;
 
-    --card: 240 5% 96%;
-    --card-foreground: 222.2 84% 4.9%;
+		--card: 240 5% 96%;
+		--card-foreground: 222.2 84% 4.9%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+		--popover: 0 0% 100%;
+		--popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+		--primary: 222.2 47.4% 11.2%;
+		--primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+		--secondary: 210 40% 96.1%;
+		--secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+		--muted: 210 40% 96.1%;
+		--muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+		--accent: 210 40% 96.1%;
+		--accent-foreground: 222.2 47.4% 11.2%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+		--destructive: 0 84.2% 60.2%;
+		--destructive-foreground: 210 40% 98%;
 
-    --border: 240 6% 80%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+		--border: 240 6% 80%;
+		--input: 214.3 31.8% 91.4%;
+		--ring: 222.2 84% 4.9%;
 
-    --radius: 0.2rem;
+		--radius: 0.2rem;
+		--success: 196 52% 74%;
+		--warning: 34 89% 85%;
+		--error: 10 100% 86%;
 
-    --success: 196 52% 74%;
-    --warning: 34 89% 85%;
-    --error: 10 100% 86%;
-  }
+		/* Calendar theme variables */
+		--today-highlight: 200 100% 93%; /* Light blue for light theme */
+		--calendar-event-bg: 218 59% 44%; /* Blue #3174ad for events */
+		--calendar-border: 240 6% 80%;
+		--calendar-cell-border: 240 6% 80%;
+		--calendar-out-of-range: 0 0% 60%; /* Lighter gray for out of range dates */
+		--calendar-out-of-range-bg: 0 0% 90%; /* Very light gray background */
+		--calendar-time-selection: 0 0% 100%; /* White for time selection text */
+		--calendar-time-selection-bg: 0 0% 0% / 0.5; /* Semi-transparent black */
+		--calendar-date-selection-bg: 0 0% 0% / 0.1; /* Light selection background */
+		--calendar-event-border: 218 69% 34%; /* Darker blue for event borders */
+		--calendar-event-outline: 200 100% 65%; /* Blue outline for focused events */
+		--calendar-event-color: 0 0% 100%; /* White text on events */
+		--calendar-btn-color: 0 0% 22%; /* Dark gray for buttons */
+		--calendar-btn-bg: 0 0% 100%; /* White button background */
+		--calendar-btn-border: 0 0% 80%; /* Light gray button border */
+		--calendar-current-time: 74 65% 40%; /* Green for current time indicator */
+	}
 
-  [data-theme='dark'] {
-    --background: 0 0% 0%;
-    --foreground: 210 40% 98%;
+	[data-theme="dark"] {
+		--background: 0 0% 0%;
+		--foreground: 210 40% 98%;
 
-    --card: 0 0% 4%;
-    --card-foreground: 210 40% 98%;
+		--card: 0 0% 4%;
+		--card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+		--popover: 222.2 84% 4.9%;
+		--popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+		--primary: 210 40% 98%;
+		--primary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+		--secondary: 217.2 32.6% 17.5%;
+		--secondary-foreground: 210 40% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+		--muted: 217.2 32.6% 17.5%;
+		--muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+		--accent: 217.2 32.6% 17.5%;
+		--accent-foreground: 210 40% 98%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+		--destructive: 0 62.8% 30.6%;
+		--destructive-foreground: 210 40% 98%;
 
-    --border: 0, 0%, 15%, 0.8;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+		--border: 0, 0%, 15%, 0.8;
+		--input: 217.2 32.6% 17.5%;
+		--ring: 212.7 26.8% 83.9%;
+		--success: 196 100% 14%;
+		--warning: 34 51% 25%;
+		--error: 10 39% 43%;
 
-    --success: 196 100% 14%;
-    --warning: 34 51% 25%;
-    --error: 10 39% 43%;
-  }
+		/* Calendar theme variables */
+		--today-highlight: 210 40% 20%; /* Darker blue for dark theme */
+		--calendar-event-bg: 218 59% 35%; /* Darker blue for events in dark theme */
+		--calendar-border: 0 0% 15%;
+		--calendar-cell-border: 0 0% 15%;
+		--calendar-out-of-range: 0 0% 50%; /* Medium gray for out of range dates */
+		--calendar-out-of-range-bg: 0 0% 10%; /* Very dark gray background */
+		--calendar-time-selection: 0 0% 100%; /* White for time selection text */
+		--calendar-time-selection-bg: 0 0% 100% / 0.1; /* Semi-transparent white */
+		--calendar-date-selection-bg: 0 0% 100% / 0.1; /* Light selection background */
+		--calendar-event-border: 218 69% 25%; /* Very dark blue for event borders */
+		--calendar-event-outline: 200 100% 65%; /* Blue outline for focused events */
+		--calendar-event-color: 0 0% 100%; /* White text on events */
+		--calendar-btn-color: 0 0% 90%; /* Light gray for buttons */
+		--calendar-btn-bg: 0 0% 5%; /* Very dark button background */
+		--calendar-btn-border: 0 0% 25%; /* Dark gray button border */
+		--calendar-current-time: 74 65% 60%; /* Brighter green for current time indicator */
+	}
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground min-h-[100vh] flex flex-col;
-  }
+	* {
+		@apply border-border;
+	}
+	body {
+		@apply bg-background text-foreground min-h-[100vh] flex flex-col;
+	}
 }
 
 html {
-  opacity: 0;
+	opacity: 0;
 }
 
-html[data-theme='dark'],
-html[data-theme='light'] {
-  opacity: initial;
+html[data-theme="dark"],
+html[data-theme="light"] {
+	opacity: initial;
 }
