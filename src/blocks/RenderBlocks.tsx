@@ -1,4 +1,5 @@
-import React, { Fragment } from "react";
+import type React from "react";
+import { Fragment } from "react";
 
 import type { Page } from "@/payload-types";
 
@@ -7,6 +8,7 @@ import { CallToActionBlock } from "@/blocks/CallToAction/Component";
 import { ContentBlock } from "@/blocks/Content/Component";
 import { FormBlock } from "@/blocks/Form/Component";
 import { MediaBlock } from "@/blocks/MediaBlock/Component";
+import { CalendarServer } from "@/blocks/Calendar/Server";
 
 const blockComponents = {
 	archive: ArchiveBlock,
@@ -14,6 +16,7 @@ const blockComponents = {
 	cta: CallToActionBlock,
 	formBlock: FormBlock,
 	mediaBlock: MediaBlock,
+	calendar: CalendarServer,
 };
 
 export const RenderBlocks: React.FC<{

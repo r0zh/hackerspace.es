@@ -17,15 +17,21 @@ import type {
 	BannerBlock as BannerBlockProps,
 	CallToActionBlock as CTABlockProps,
 	MediaBlock as MediaBlockProps,
+	CalendarBlock as CalendarBlockProps,
 } from "@/payload-types";
 import { BannerBlock } from "@/blocks/Banner/Component";
 import { CallToActionBlock } from "@/blocks/CallToAction/Component";
+import { CalendarBlock } from "@/blocks/Calendar/Component";
 import { cn } from "@/utilities/ui";
 
 type NodeTypes =
 	| DefaultNodeTypes
 	| SerializedBlockNode<
-			CTABlockProps | MediaBlockProps | BannerBlockProps | CodeBlockProps
+			| CTABlockProps
+			| MediaBlockProps
+			| BannerBlockProps
+			| CodeBlockProps
+			| CalendarBlockProps
 	  >;
 
 const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
@@ -58,6 +64,9 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
 		),
 		code: ({ node }) => <CodeBlock className="col-start-2" {...node.fields} />,
 		cta: ({ node }) => <CallToActionBlock {...node.fields} />,
+		calendar: ({ node }) => (
+			<CalendarBlock className="col-start-2 mb-4" {...node.fields} />
+		),
 	},
 });
 

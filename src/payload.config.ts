@@ -2,11 +2,12 @@
 import { postgresAdapter } from "@payloadcms/db-postgres";
 
 import sharp from "sharp"; // sharp-import
-import path from "path";
-import { buildConfig, PayloadRequest } from "payload";
-import { fileURLToPath } from "url";
+import path from "node:path";
+import { buildConfig, type PayloadRequest } from "payload";
+import { fileURLToPath } from "node:url";
 
 import { Categories } from "./collections/Categories";
+import { Events } from "./collections/Events";
 import { Media } from "./collections/Media";
 import { Pages } from "./collections/Pages";
 import { Posts } from "./collections/Posts";
@@ -64,7 +65,7 @@ export default buildConfig({
 			connectionString: process.env.DATABASE_URI || "",
 		},
 	}),
-	collections: [Pages, Posts, Media, Categories, Users],
+	collections: [Pages, Posts, Media, Categories, Events, Users],
 	cors: [getServerSideURL()].filter(Boolean),
 	globals: [Header, Footer],
 	plugins: [
