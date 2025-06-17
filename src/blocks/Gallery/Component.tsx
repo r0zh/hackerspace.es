@@ -5,11 +5,13 @@ import type {
     Media,
 } from "src/payload-types";
 
+import { Gallery } from "@/components/Gallery";
+import { PhotoModal } from "@/components/PhotoModal";
+import { getMediaUrl } from "@/utilities/getMediaUrl";
 import { cn } from "@/utilities/ui";
 import type React from "react";
 import { useState } from "react";
-import PhotoAlbum from "react-photo-album";
-import { getMediaUrl } from "@/utilities/getMediaUrl";
+import type { Photo } from "react-photo-album";
 
 const baseClass = "gallery-block";
 
@@ -22,15 +24,14 @@ export const GalleryBlock: React.FC<Props> = ({
     className,
     title,
     layout = "masonry",
-    spacing = 10,
     targetRowHeight = 200,
     columns = 3,
     media = [],
 }) => {
-    const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
+    const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
 
     // Transform media items to photo album format
-    const photos = media
+    const photos: Photo[] = media
         .filter((item) => item.mimeType?.startsWith("image/"))
         .map((item) => {
             const width = item.width || 400;
@@ -45,7 +46,10 @@ export const GalleryBlock: React.FC<Props> = ({
         });
 
     const handlePhotoClick = ({ index }: { index: number }) => {
-        setSelectedPhoto(index);
+        const photo = photos[index];
+        if (photo) {
+            setSelectedPhoto(photo);
+        }
     };
 
     const closeModal = () => {
@@ -70,52 +74,19 @@ export const GalleryBlock: React.FC<Props> = ({
             <div className="max-w-7xl mx-auto">
                 {title && <h2 className="mb-6 text-2xl font-bold">{title}</h2>}
 
-                <PhotoAlbum
+                <Gallery
                     photos={photos}
                     layout={layout as "masonry" | "rows" | "columns"}
-                    spacing={spacing || 10}
-                    targetRowHeight={layout === "rows" ? (targetRowHeight || 200) : undefined}
-                    columns={layout === "columns" ? (columns || 3) : undefined}
-                    onClick={handlePhotoClick}
+                    targetRowHeight={targetRowHeight || 200}
+                    columns={columns || 3}
+                    onPhotoClick={handlePhotoClick}
                 />
 
-                {/* Simple modal for viewing larger images */}
-                {selectedPhoto !== null && photos[selectedPhoto] && (
-                    <div
-                        className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
-                        onClick={closeModal}
-                        onKeyDown={(e) => {
-                            if (e.key === "Escape") {
-                                closeModal();
-                            }
-                        }}
-                        role="dialog"
-                        aria-modal="true"
-                        tabIndex={-1}
-                    >
-                        <div
-                            className="relative max-w-4xl max-h-full"
-                            onClick={(e) => e.stopPropagation()}
-                            onKeyDown={(e) => e.stopPropagation()}
-                            role="img"
-                            aria-label={photos[selectedPhoto]?.alt || "Gallery image"}
-                        >
-                            <button
-                                type="button"
-                                onClick={closeModal}
-                                className="absolute top-2 right-2 text-white bg-black bg-opacity-50 rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold hover:bg-opacity-75 z-10"
-                                aria-label="Close modal"
-                            >
-                                ×
-                            </button>
-                            <img
-                                src={photos[selectedPhoto]?.src || ""}
-                                alt={photos[selectedPhoto]?.alt || "Gallery image"}
-                                className="max-w-full max-h-full object-contain rounded"
-                            />
-                        </div>
-                    </div>
-                )}
+                <PhotoModal
+                    photo={selectedPhoto}
+                    isOpen={selectedPhoto !== null}
+                    onClose={closeModal}
+                />
             </div>
         </div>
     );

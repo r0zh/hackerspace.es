@@ -60,17 +60,6 @@ export const Gallery: Block = {
 			},
 		},
 		{
-			name: "spacing",
-			type: "number",
-			label: "Spacing (in pixels)",
-			defaultValue: 10,
-			min: 0,
-			max: 50,
-			admin: {
-				description: "Space between images in the gallery",
-			},
-		},
-		{
 			name: "targetRowHeight",
 			type: "number",
 			label: "Target Row Height (in pixels)",
@@ -90,8 +79,10 @@ export const Gallery: Block = {
 			min: 1,
 			max: 6,
 			admin: {
-				condition: (_, siblingData) => siblingData.layout === "columns",
-				description: "Number of columns in the gallery",
+				condition: (_, siblingData) =>
+					siblingData.layout === "columns" || siblingData.layout === "masonry",
+				description:
+					"Number of columns in the gallery. (Will be ignored from a certain breakpoint to make it responsive)",
 			},
 		},
 	],

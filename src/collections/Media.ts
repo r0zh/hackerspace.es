@@ -48,7 +48,7 @@ export const Media: CollectionConfig = {
 			label: "Link to Event (Optional)",
 			admin: {
 				description:
-					"Optionally link this media to an event by selecting from available events",
+					"Optionally link this media to a single event by selecting from available events",
 			},
 		},
 	],

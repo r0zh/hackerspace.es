@@ -279,7 +279,7 @@ export interface Media {
     [k: string]: unknown;
   } | null;
   /**
-   * Optionally link this media to an event by selecting from available events
+   * Optionally link this media to a single event by selecting from available events
    */
   linkedEvent?: (number | null) | Event;
   updatedAt: string;
@@ -792,15 +792,11 @@ export interface GalleryBlock {
    */
   layout?: ('masonry' | 'rows' | 'columns') | null;
   /**
-   * Space between images in the gallery
-   */
-  spacing?: number | null;
-  /**
    * Target height for rows in the gallery
    */
   targetRowHeight?: number | null;
   /**
-   * Number of columns in the gallery
+   * Number of columns in the gallery. (Will be ignored from a certain breakpoint to make it responsive)
    */
   columns?: number | null;
   id?: string | null;
@@ -1226,7 +1222,6 @@ export interface GalleryBlockSelect<T extends boolean = true> {
   selectedEvent?: T;
   selectedMedia?: T;
   layout?: T;
-  spacing?: T;
   targetRowHeight?: T;
   columns?: T;
   id?: T;
