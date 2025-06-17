@@ -16,6 +16,9 @@ import { post1 } from "./post-1";
 import { post2 } from "./post-2";
 import { post3 } from "./post-3";
 import { sampleEvents } from "./events";
+import { event1Image1 } from "./event1-image1";
+import { event1Image2 } from "./event1-image2";
+import { event1Image3 } from "./event1-image3";
 
 const collections: CollectionSlug[] = [
 	"categories",
@@ -94,135 +97,169 @@ export const seed = async ({
 
 	payload.logger.info("— Seeding media...");
 
-	const [image1Buffer, image2Buffer, image3Buffer, hero1Buffer] =
-		await Promise.all([
-			fetchFileByURL(
-				"https://raw.githubusercontent.com/payloadcms/payload/refs/heads/main/templates/website/src/endpoints/seed/image-post1.webp",
-			),
-			fetchFileByURL(
-				"https://raw.githubusercontent.com/payloadcms/payload/refs/heads/main/templates/website/src/endpoints/seed/image-post2.webp",
-			),
-			fetchFileByURL(
-				"https://raw.githubusercontent.com/payloadcms/payload/refs/heads/main/templates/website/src/endpoints/seed/image-post3.webp",
-			),
-			fetchFileByURL(
-				"https://raw.githubusercontent.com/payloadcms/payload/refs/heads/main/templates/website/src/endpoints/seed/image-hero1.webp",
-			),
-		]);
+	const [
+		image1Buffer,
+		image2Buffer,
+		image3Buffer,
+		hero1Buffer,
+		event1Img1Buffer,
+		event1Img2Buffer,
+		event1Img3Buffer,
+	] = await Promise.all([
+		fetchFileByURL(
+			"https://raw.githubusercontent.com/payloadcms/payload/refs/heads/main/templates/website/src/endpoints/seed/image-post1.webp",
+		),
+		fetchFileByURL(
+			"https://raw.githubusercontent.com/payloadcms/payload/refs/heads/main/templates/website/src/endpoints/seed/image-post2.webp",
+		),
+		fetchFileByURL(
+			"https://raw.githubusercontent.com/payloadcms/payload/refs/heads/main/templates/website/src/endpoints/seed/image-post3.webp",
+		),
+		fetchFileByURL(
+			"https://raw.githubusercontent.com/payloadcms/payload/refs/heads/main/templates/website/src/endpoints/seed/image-hero1.webp",
+		),
 
-	const [demoAuthor, image1Doc, image2Doc, image3Doc, imageHomeDoc] =
-		await Promise.all([
-			payload.create({
-				collection: "users",
-				data: {
-					name: "Demo Author",
-					email: "demo-author@example.com",
-					password: "password",
-				},
-			}),
-			payload.create({
-				collection: "media",
-				data: image1,
-				file: image1Buffer,
-			}),
-			payload.create({
-				collection: "media",
-				data: image2,
-				file: image2Buffer,
-			}),
-			payload.create({
-				collection: "media",
-				data: image2,
-				file: image3Buffer,
-			}),
-			payload.create({
-				collection: "media",
-				data: imageHero1,
-				file: hero1Buffer,
-			}),
+		readLocalFile("src/endpoints/seed/media/event1_1.webp"),
+		readLocalFile("src/endpoints/seed/media/event1_2.webp"),
+		readLocalFile("src/endpoints/seed/media/event1_3.webp"),
+	]);
 
-			payload.create({
-				collection: "categories",
-				data: {
-					title: "Technology",
-					breadcrumbs: [
-						{
-							label: "Technology",
-							url: "/technology",
-						},
-					],
-				},
-			}),
+	const [
+		demoAuthor,
+		image1Doc,
+		image2Doc,
+		image3Doc,
+		imageHomeDoc,
+		event1Img1Doc,
+		event1Img2Doc,
+		event1Img3Doc,
+	] = await Promise.all([
+		payload.create({
+			collection: "users",
+			data: {
+				name: "Demo Author",
+				email: "demo-author@example.com",
+				password: "password",
+			},
+		}),
+		payload.create({
+			collection: "media",
+			data: image1,
+			file: image1Buffer,
+		}),
+		payload.create({
+			collection: "media",
+			data: image2,
+			file: image2Buffer,
+		}),
+		payload.create({
+			collection: "media",
+			data: image2,
+			file: image3Buffer,
+		}),
+		payload.create({
+			collection: "media",
+			data: imageHero1,
+			file: hero1Buffer,
+		}),
+		payload.create({
+			collection: "media",
+			data: event1Image1,
+			file: event1Img1Buffer,
+		}),
+		payload.create({
+			collection: "media",
+			data: event1Image2,
+			file: event1Img2Buffer,
+		}),
+		payload.create({
+			collection: "media",
+			data: event1Image3,
+			file: event1Img3Buffer,
+		}),
 
-			payload.create({
-				collection: "categories",
-				data: {
-					title: "News",
-					breadcrumbs: [
-						{
-							label: "News",
-							url: "/news",
-						},
-					],
-				},
-			}),
+		payload.create({
+			collection: "categories",
+			data: {
+				title: "Technology",
+				breadcrumbs: [
+					{
+						label: "Technology",
+						url: "/technology",
+					},
+				],
+			},
+		}),
 
-			payload.create({
-				collection: "categories",
-				data: {
-					title: "Finance",
-					breadcrumbs: [
-						{
-							label: "Finance",
-							url: "/finance",
-						},
-					],
-				},
-			}),
-			payload.create({
-				collection: "categories",
-				data: {
-					title: "Design",
-					breadcrumbs: [
-						{
-							label: "Design",
-							url: "/design",
-						},
-					],
-				},
-			}),
+		payload.create({
+			collection: "categories",
+			data: {
+				title: "News",
+				breadcrumbs: [
+					{
+						label: "News",
+						url: "/news",
+					},
+				],
+			},
+		}),
 
-			payload.create({
-				collection: "categories",
-				data: {
-					title: "Software",
-					breadcrumbs: [
-						{
-							label: "Software",
-							url: "/software",
-						},
-					],
-				},
-			}),
+		payload.create({
+			collection: "categories",
+			data: {
+				title: "Finance",
+				breadcrumbs: [
+					{
+						label: "Finance",
+						url: "/finance",
+					},
+				],
+			},
+		}),
+		payload.create({
+			collection: "categories",
+			data: {
+				title: "Design",
+				breadcrumbs: [
+					{
+						label: "Design",
+						url: "/design",
+					},
+				],
+			},
+		}),
 
-			payload.create({
-				collection: "categories",
-				data: {
-					title: "Engineering",
-					breadcrumbs: [
-						{
-							label: "Engineering",
-							url: "/engineering",
-						},
-					],
-				},
-			}),
-		]);
+		payload.create({
+			collection: "categories",
+			data: {
+				title: "Software",
+				breadcrumbs: [
+					{
+						label: "Software",
+						url: "/software",
+					},
+				],
+			},
+		}),
+
+		payload.create({
+			collection: "categories",
+			data: {
+				title: "Engineering",
+				breadcrumbs: [
+					{
+						label: "Engineering",
+						url: "/engineering",
+					},
+				],
+			},
+		}),
+	]);
 
 	payload.logger.info("— Seeding events...");
 
-	// Seed sample events
-	await Promise.all(
+	// Seed sample events and store references for linking to media
+	const createdEvents = await Promise.all(
 		sampleEvents.map((eventData) =>
 			payload.create({
 				collection: "events",
@@ -230,6 +267,47 @@ export const seed = async ({
 			}),
 		),
 	);
+
+	// Find specific events for linking to media
+	const hackerspaceIntroEvent = createdEvents.find(
+		(event) => event.title === "Learn what HackerSpace.es is",
+	);
+	const hackerspaceCommunitiesEvent = createdEvents.find(
+		(event) =>
+			event.title ===
+			"Hackerspace.es - Building Inclusive Cybersecurity Communities",
+	);
+	const hackersHugsEvent = createdEvents.find(
+		(event) => event.title === "Hackers need Hugs too",
+	);
+
+	// Update event-related media with linkedEvent
+	if (hackerspaceIntroEvent) {
+		// Link the event images to the intro event
+		await Promise.all([
+			payload.update({
+				id: event1Img1Doc.id,
+				collection: "media",
+				data: {
+					linkedEvent: hackerspaceIntroEvent.id,
+				},
+			}),
+			payload.update({
+				id: event1Img2Doc.id,
+				collection: "media",
+				data: {
+					linkedEvent: hackerspaceIntroEvent.id,
+				},
+			}),
+			payload.update({
+				id: event1Img3Doc.id,
+				collection: "media",
+				data: {
+					linkedEvent: hackerspaceIntroEvent.id,
+				},
+			}),
+		]);
+	}
 
 	payload.logger.info("— Seeding posts...");
 
@@ -399,5 +477,22 @@ async function fetchFileByURL(url: string): Promise<File> {
 		data: Buffer.from(data),
 		mimetype: `image/${url.split(".").pop()}`,
 		size: data.byteLength,
+	};
+}
+
+async function readLocalFile(filePath: string): Promise<File> {
+	const fs = await import("node:fs");
+	const path = await import("node:path");
+
+	const fullPath = path.resolve(process.cwd(), filePath);
+	const data = fs.readFileSync(fullPath);
+	const fileName = path.basename(fullPath);
+	const extension = path.extname(fileName).substring(1);
+
+	return {
+		name: fileName,
+		data,
+		mimetype: `image/${extension}`,
+		size: data.length,
 	};
 }
