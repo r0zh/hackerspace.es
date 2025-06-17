@@ -8,6 +8,7 @@ import { Content } from "../../blocks/Content/config";
 import { FormBlock } from "../../blocks/Form/config";
 import { MediaBlock } from "../../blocks/MediaBlock/config";
 import { Calendar } from "../../blocks/Calendar/config";
+import { Gallery } from "../../blocks/Gallery/config";
 import { hero } from "@/heros/config";
 import { slugField } from "@/fields/slug";
 import { populatePublishedAt } from "../../hooks/populatePublishedAt";
@@ -83,6 +84,7 @@ export const Pages: CollectionConfig<"pages"> = {
 								Archive,
 								FormBlock,
 								Calendar,
+								Gallery,
 							],
 							required: true,
 							admin: {

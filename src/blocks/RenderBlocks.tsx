@@ -9,6 +9,7 @@ import { ContentBlock } from "@/blocks/Content/Component";
 import { FormBlock } from "@/blocks/Form/Component";
 import { MediaBlock } from "@/blocks/MediaBlock/Component";
 import { CalendarServer } from "@/blocks/Calendar/Server";
+import { GalleryServer } from "@/blocks/Gallery/Server";
 
 const blockComponents = {
 	archive: ArchiveBlock,
@@ -17,6 +18,7 @@ const blockComponents = {
 	formBlock: FormBlock,
 	mediaBlock: MediaBlock,
 	calendar: CalendarServer,
+	gallery: GalleryServer,
 };
 
 export const RenderBlocks: React.FC<{
