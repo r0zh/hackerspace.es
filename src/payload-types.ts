@@ -72,6 +72,7 @@ export interface Config {
     media: Media;
     categories: Category;
     events: Event;
+    sponsors: Sponsor;
     users: User;
     redirects: Redirect;
     forms: Form;
@@ -89,6 +90,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
+    sponsors: SponsorsSelect<false> | SponsorsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
@@ -193,7 +195,16 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | CalendarBlock | GalleryBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | CalendarBlock
+    | GalleryBlock
+    | SponsorsBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -805,6 +816,52 @@ export interface GalleryBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SponsorsBlock".
+ */
+export interface SponsorsBlock {
+  title?: string | null;
+  /**
+   * Target height for rows in the sponsors gallery
+   */
+  targetRowHeight?: number | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'sponsors';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sponsors".
+ */
+export interface Sponsor {
+  id: number;
+  name: string;
+  /**
+   * URL to the sponsor's website
+   */
+  link: string;
+  /**
+   * Logo or image for the sponsor
+   */
+  media: number | Media;
+  /**
+   * Optional description about the sponsor
+   */
+  description?: string | null;
+  /**
+   * Whether this sponsor should be displayed
+   */
+  active?: boolean | null;
+  /**
+   * Higher numbers will be displayed first
+   */
+  priority?: number | null;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -997,6 +1054,10 @@ export interface PayloadLockedDocument {
         value: number | Event;
       } | null)
     | ({
+        relationTo: 'sponsors';
+        value: number | Sponsor;
+      } | null)
+    | ({
         relationTo: 'users';
         value: number | User;
       } | null)
@@ -1100,6 +1161,7 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         calendar?: T | CalendarBlockSelect<T>;
         gallery?: T | GalleryBlockSelect<T>;
+        sponsors?: T | SponsorsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1224,6 +1286,16 @@ export interface GalleryBlockSelect<T extends boolean = true> {
   layout?: T;
   targetRowHeight?: T;
   columns?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SponsorsBlock_select".
+ */
+export interface SponsorsBlockSelect<T extends boolean = true> {
+  title?: T;
+  targetRowHeight?: T;
   id?: T;
   blockName?: T;
 }
@@ -1384,6 +1456,22 @@ export interface EventsSelect<T extends boolean = true> {
   allDay?: T;
   location?: T;
   category?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sponsors_select".
+ */
+export interface SponsorsSelect<T extends boolean = true> {
+  name?: T;
+  link?: T;
+  media?: T;
+  description?: T;
+  active?: T;
+  priority?: T;
+  slug?: T;
+  slugLock?: T;
   updatedAt?: T;
   createdAt?: T;
 }
