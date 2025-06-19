@@ -11,7 +11,7 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"cweijan.vscode-postgresql-client2",
+				"mongodb.mongodb-vscode",
 				"bradlc.vscode-tailwindcss",
 				"biomejs.biome"
 			],
@@ -21,5 +21,6 @@
 		}
 	},
 	"forwardPorts": [3000],
-	"postCreateCommand": "pnpm install"
+	// You may need to restart biome after installing this is done. ctrl+shift+p -> Biome: Restart
+	"postCreateCommand": "sudo chown -R node:node /home/node/app/node_modules /pnpm && pnpm install"
 }
