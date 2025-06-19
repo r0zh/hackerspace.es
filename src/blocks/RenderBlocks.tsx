@@ -10,6 +10,7 @@ import { FormBlock } from "@/blocks/Form/Component";
 import { MediaBlock } from "@/blocks/MediaBlock/Component";
 import { CalendarServer } from "@/blocks/Calendar/Server";
 import { GalleryServer } from "@/blocks/Gallery/Server";
+import { SponsorsServer } from "@/blocks/Sponsors/Server";
 
 const blockComponents = {
 	archive: ArchiveBlock,
@@ -19,6 +20,7 @@ const blockComponents = {
 	mediaBlock: MediaBlock,
 	calendar: CalendarServer,
 	gallery: GalleryServer,
+	sponsors: SponsorsServer,
 };
 
 export const RenderBlocks: React.FC<{
