@@ -14,27 +14,24 @@ services:
     working_dir: /home/node/app/
     command: sleep infinity
     depends_on:
-      - postgresql
+      - mongo
     env_file:
       - ../.env
     environment:
       - PNPM_HOME=/pnpm
 
-  postgresql:
-    image: postgres:16
-    shm_size: 1g
-    restart: always
-    volumes:
-      - ../pg-init:/docker-entrypoint-initdb.d
-      - postgres_data:/var/lib/postgresql/data
+  mongo:
+    image: mongo:latest
     ports:
-      - 5440:5432
-    env_file:
-      - ../.env
+      - '27017:27017'
+    command:
+      - --storageEngine=wiredTiger
+    volumes:
+      - data:/data/db
+    logging:
+      driver: none
 
 volumes:
   data:
   node_modules:
   pnpm-store:  # Add pnpm store volume
-  postgres_data:
-    driver: local
