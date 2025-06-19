@@ -1,0 +1,13 @@
+// SponsorsGallery styles - inheriting from Gallery
+.sponsors-gallery {
+  /* Add any sponsor-specific styles here */
+}
+
+.sponsors-gallery .react-photo-album--photo {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.sponsors-gallery .react-photo-album--photo:hover {
+  opacity: 0.8;
+}
