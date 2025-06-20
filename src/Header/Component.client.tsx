@@ -2,7 +2,8 @@
 import { useHeaderTheme } from "@/providers/HeaderTheme";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import type React from "react";
+import { useEffect, useState } from "react";
 
 import type { Header } from "@/payload-types";
 
@@ -39,7 +40,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 					<Logo
 						loading="eager"
 						priority="high"
-						className="invert dark:invert-0"
+						className=""
 					/>
 				</Link>
 				<HeaderNav data={data} />
