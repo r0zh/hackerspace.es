@@ -7,6 +7,7 @@ import { GalleryBlock } from "./Component";
 import {
     getAllMedia,
     getMediaByEvent,
+    getAllEventMedia,
 } from "@/utilities/getMedia";
 
 interface GalleryServerProps extends GalleryBlockProps {
@@ -29,6 +30,9 @@ export async function GalleryServer({
                     const eventId = typeof selectedEvent === "object" ? selectedEvent.id : selectedEvent;
                     media = await getMediaByEvent(eventId);
                 }
+                break;
+            case "all-events":
+                media = await getAllEventMedia();
                 break;
             case "selection":
                 if (selectedMedia && selectedMedia.length > 0) {

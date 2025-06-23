@@ -18,6 +18,7 @@ export const Gallery: Block = {
 			options: [
 				{ label: "All Media from Collection", value: "all" },
 				{ label: "Media by Event", value: "event" },
+				{ label: "All Event Media", value: "all-events" },
 				{ label: "Individual Selection", value: "selection" },
 			],
 			admin: {

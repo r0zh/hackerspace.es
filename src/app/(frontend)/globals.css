@@ -17,106 +17,106 @@
 
 	:root {
 		--background: 0 0% 100%;
-		--foreground: 222.2 84% 4.9%;
+		--foreground: 207 88% 16%;
 
-		--card: 240 5% 96%;
-		--card-foreground: 222.2 84% 4.9%;
+		--card: 0 0% 98%;
+		--card-foreground: 207 88% 16%;
 
 		--popover: 0 0% 100%;
-		--popover-foreground: 222.2 84% 4.9%;
+		--popover-foreground: 207 88% 16%;
 
-		--primary: 222.2 47.4% 11.2%;
-		--primary-foreground: 210 40% 98%;
+		--primary: 207 88% 16%;
+		--primary-foreground: 0 0% 100%;
 
-		--secondary: 210 40% 96.1%;
-		--secondary-foreground: 222.2 47.4% 11.2%;
+		--secondary: 47 98% 62%;
+		--secondary-foreground: 207 88% 16%;
 
-		--muted: 210 40% 96.1%;
-		--muted-foreground: 215.4 16.3% 46.9%;
+		--muted: 47 30% 95%;
+		--muted-foreground: 207 25% 40%;
 
-		--accent: 210 40% 96.1%;
-		--accent-foreground: 222.2 47.4% 11.2%;
+		--accent: 47 85% 85%;
+		--accent-foreground: 207 88% 16%;
 
-		--destructive: 0 84.2% 60.2%;
-		--destructive-foreground: 210 40% 98%;
+		--destructive: 12 74% 51%;
+		--destructive-foreground: 0 0% 100%;
 
-		--border: 240 6% 80%;
-		--input: 214.3 31.8% 91.4%;
-		--ring: 222.2 84% 4.9%;
+		--border: 207 20% 85%;
+		--input: 47 20% 93%;
+		--ring: 207 88% 16%;
 
 		--radius: 0.2rem;
-		--success: 196 52% 74%;
-		--warning: 34 89% 85%;
-		--error: 10 100% 86%;
+		--success: 142 76% 36%;
+		--warning: 47 98% 62%;
+		--error: 12 74% 51%;
 
 		/* Calendar theme variables */
-		--today-highlight: 200 100% 93%; /* Light blue for light theme */
-		--calendar-event-bg: 218 59% 44%; /* Blue #3174ad for events */
-		--calendar-border: 240 6% 80%;
-		--calendar-cell-border: 240 6% 80%;
+		--today-highlight: 47 85% 85%; /* Light yellow for today highlight */
+		--calendar-event-bg: 207 88% 16%; /* Primary dark blue for events */
+		--calendar-border: 207 20% 85%;
+		--calendar-cell-border: 207 20% 85%;
 		--calendar-out-of-range: 0 0% 60%; /* Lighter gray for out of range dates */
-		--calendar-out-of-range-bg: 0 0% 90%; /* Very light gray background */
+		--calendar-out-of-range-bg: 0 0% 95%; /* Very light gray background */
 		--calendar-time-selection: 0 0% 100%; /* White for time selection text */
-		--calendar-time-selection-bg: 0 0% 0% / 0.5; /* Semi-transparent black */
-		--calendar-date-selection-bg: 0 0% 0% / 0.1; /* Light selection background */
-		--calendar-event-border: 218 69% 34%; /* Darker blue for event borders */
-		--calendar-event-outline: 200 100% 65%; /* Blue outline for focused events */
+		--calendar-time-selection-bg: 207 88% 16% / 0.8; /* Primary color with transparency */
+		--calendar-date-selection-bg: 47 98% 62% / 0.2; /* Secondary color with transparency */
+		--calendar-event-border: 207 88% 12%; /* Darker primary for event borders */
+		--calendar-event-outline: 47 98% 62%; /* Secondary color outline for focused events */
 		--calendar-event-color: 0 0% 100%; /* White text on events */
-		--calendar-btn-color: 0 0% 22%; /* Dark gray for buttons */
+		--calendar-btn-color: 207 88% 16%; /* Primary color for buttons */
 		--calendar-btn-bg: 0 0% 100%; /* White button background */
-		--calendar-btn-border: 0 0% 80%; /* Light gray button border */
-		--calendar-current-time: 74 65% 40%; /* Green for current time indicator */
+		--calendar-btn-border: 207 20% 85%; /* Light border for buttons */
+		--calendar-current-time: 12 74% 51%; /* Error/accent color for current time indicator */
 	}
 
 	[data-theme="dark"] {
-		--background: 0 0% 0%;
-		--foreground: 210 40% 98%;
+		--background: 207 88% 4%;
+		--foreground: 47 50% 85%;
 
-		--card: 0 0% 4%;
-		--card-foreground: 210 40% 98%;
+		--card: 207 70% 8%;
+		--card-foreground: 47 50% 85%;
 
-		--popover: 222.2 84% 4.9%;
-		--popover-foreground: 210 40% 98%;
+		--popover: 207 70% 8%;
+		--popover-foreground: 47 50% 85%;
 
-		--primary: 210 40% 98%;
-		--primary-foreground: 222.2 47.4% 11.2%;
+		--primary: 47 98% 62%;
+		--primary-foreground: 207 88% 16%;
 
-		--secondary: 217.2 32.6% 17.5%;
-		--secondary-foreground: 210 40% 98%;
+		--secondary: 207 60% 25%;
+		--secondary-foreground: 47 98% 62%;
 
-		--muted: 217.2 32.6% 17.5%;
-		--muted-foreground: 215 20.2% 65.1%;
+		--muted: 207 60% 15%;
+		--muted-foreground: 47 20% 65%;
 
-		--accent: 217.2 32.6% 17.5%;
-		--accent-foreground: 210 40% 98%;
+		--accent: 207 60% 15%;
+		--accent-foreground: 47 98% 62%;
 
-		--destructive: 0 62.8% 30.6%;
-		--destructive-foreground: 210 40% 98%;
+		--destructive: 12 74% 65%;
+		--destructive-foreground: 207 88% 4%;
 
-		--border: 0, 0%, 15%, 0.8;
-		--input: 217.2 32.6% 17.5%;
-		--ring: 212.7 26.8% 83.9%;
-		--success: 196 100% 14%;
-		--warning: 34 51% 25%;
-		--error: 10 39% 43%;
+		--border: 207 40% 20%;
+		--input: 207 60% 15%;
+		--ring: 47 98% 62%;
+		--success: 142 50% 50%;
+		--warning: 47 85% 55%;
+		--error: 12 74% 65%;
 
 		/* Calendar theme variables */
-		--today-highlight: 210 40% 20%; /* Darker blue for dark theme */
-		--calendar-event-bg: 218 59% 35%; /* Darker blue for events in dark theme */
-		--calendar-border: 0 0% 15%;
-		--calendar-cell-border: 0 0% 15%;
+		--today-highlight: 47 85% 25%; /* Darker yellow for dark theme today highlight */
+		--calendar-event-bg: 47 98% 62%; /* Secondary bright yellow for events in dark theme */
+		--calendar-border: 207 40% 20%;
+		--calendar-cell-border: 207 40% 20%;
 		--calendar-out-of-range: 0 0% 50%; /* Medium gray for out of range dates */
-		--calendar-out-of-range-bg: 0 0% 10%; /* Very dark gray background */
-		--calendar-time-selection: 0 0% 100%; /* White for time selection text */
-		--calendar-time-selection-bg: 0 0% 100% / 0.1; /* Semi-transparent white */
-		--calendar-date-selection-bg: 0 0% 100% / 0.1; /* Light selection background */
-		--calendar-event-border: 218 69% 25%; /* Very dark blue for event borders */
-		--calendar-event-outline: 200 100% 65%; /* Blue outline for focused events */
-		--calendar-event-color: 0 0% 100%; /* White text on events */
-		--calendar-btn-color: 0 0% 90%; /* Light gray for buttons */
-		--calendar-btn-bg: 0 0% 5%; /* Very dark button background */
-		--calendar-btn-border: 0 0% 25%; /* Dark gray button border */
-		--calendar-current-time: 74 65% 60%; /* Brighter green for current time indicator */
+		--calendar-out-of-range-bg: 207 70% 6%; /* Very dark background */
+		--calendar-time-selection: 207 88% 4%; /* Dark background text for time selection */
+		--calendar-time-selection-bg: 47 98% 62% / 0.9; /* Secondary color with transparency */
+		--calendar-date-selection-bg: 47 98% 62% / 0.15; /* Light selection background */
+		--calendar-event-border: 47 98% 70%; /* Brighter yellow for event borders */
+		--calendar-event-outline: 12 74% 65%; /* Error color outline for focused events */
+		--calendar-event-color: 207 88% 16%; /* Dark primary text on bright events */
+		--calendar-btn-color: 47 98% 62%; /* Secondary color for buttons */
+		--calendar-btn-bg: 207 70% 8%; /* Dark button background */
+		--calendar-btn-border: 207 40% 25%; /* Dark border for buttons */
+		--calendar-current-time: 12 74% 65%; /* Bright error color for current time indicator */
 	}
 }
 
