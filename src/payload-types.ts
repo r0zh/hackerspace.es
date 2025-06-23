@@ -102,7 +102,7 @@ export interface Config {
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: number;
+    defaultIDType: string;
   };
   globals: {
     header: Header;
@@ -150,7 +150,7 @@ export interface UserAuthOperations {
  * via the `definition` "pages".
  */
 export interface Page {
-  id: number;
+  id: string;
   title: string;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
@@ -177,11 +177,11 @@ export interface Page {
             reference?:
               | ({
                   relationTo: 'pages';
-                  value: number | Page;
+                  value: string | Page;
                 } | null)
               | ({
                   relationTo: 'posts';
-                  value: number | Post;
+                  value: string | Post;
                 } | null);
             url?: string | null;
             label: string;
@@ -193,7 +193,7 @@ export interface Page {
           id?: string | null;
         }[]
       | null;
-    media?: (number | null) | Media;
+    media?: (string | null) | Media;
   };
   layout: (
     | CallToActionBlock
@@ -210,7 +210,7 @@ export interface Page {
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
-    image?: (number | null) | Media;
+    image?: (string | null) | Media;
     description?: string | null;
   };
   publishedAt?: string | null;
@@ -225,9 +225,9 @@ export interface Page {
  * via the `definition` "posts".
  */
 export interface Post {
-  id: number;
+  id: string;
   title: string;
-  heroImage?: (number | null) | Media;
+  heroImage?: (string | null) | Media;
   content: {
     root: {
       type: string;
@@ -243,18 +243,18 @@ export interface Post {
     };
     [k: string]: unknown;
   };
-  relatedPosts?: (number | Post)[] | null;
-  categories?: (number | Category)[] | null;
+  relatedPosts?: (string | Post)[] | null;
+  categories?: (string | Category)[] | null;
   meta?: {
     title?: string | null;
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
-    image?: (number | null) | Media;
+    image?: (string | null) | Media;
     description?: string | null;
   };
   publishedAt?: string | null;
-  authors?: (number | User)[] | null;
+  authors?: (string | User)[] | null;
   populatedAuthors?:
     | {
         id?: string | null;
@@ -272,7 +272,7 @@ export interface Post {
  * via the `definition` "media".
  */
 export interface Media {
-  id: number;
+  id: string;
   alt?: string | null;
   caption?: {
     root: {
@@ -292,7 +292,7 @@ export interface Media {
   /**
    * Optionally link this media to a single event by selecting from available events
    */
-  linkedEvent?: (number | null) | Event;
+  linkedEvent?: (string | null) | Event;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -368,7 +368,7 @@ export interface Media {
  * via the `definition` "events".
  */
 export interface Event {
-  id: number;
+  id: string;
   title: string;
   description?: string | null;
   start: string;
@@ -384,14 +384,14 @@ export interface Event {
  * via the `definition` "categories".
  */
 export interface Category {
-  id: number;
+  id: string;
   title: string;
   slug?: string | null;
   slugLock?: boolean | null;
-  parent?: (number | null) | Category;
+  parent?: (string | null) | Category;
   breadcrumbs?:
     | {
-        doc?: (number | null) | Category;
+        doc?: (string | null) | Category;
         url?: string | null;
         label?: string | null;
         id?: string | null;
@@ -405,7 +405,7 @@ export interface Category {
  * via the `definition` "users".
  */
 export interface User {
-  id: number;
+  id: string;
   name?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -446,11 +446,11 @@ export interface CallToActionBlock {
           reference?:
             | ({
                 relationTo: 'pages';
-                value: number | Page;
+                value: string | Page;
               } | null)
             | ({
                 relationTo: 'posts';
-                value: number | Post;
+                value: string | Post;
               } | null);
           url?: string | null;
           label: string;
@@ -496,11 +496,11 @@ export interface ContentBlock {
           reference?:
             | ({
                 relationTo: 'pages';
-                value: number | Page;
+                value: string | Page;
               } | null)
             | ({
                 relationTo: 'posts';
-                value: number | Post;
+                value: string | Post;
               } | null);
           url?: string | null;
           label: string;
@@ -521,7 +521,7 @@ export interface ContentBlock {
  * via the `definition` "MediaBlock".
  */
 export interface MediaBlock {
-  media: number | Media;
+  media: string | Media;
   id?: string | null;
   blockName?: string | null;
   blockType: 'mediaBlock';
@@ -548,12 +548,12 @@ export interface ArchiveBlock {
   } | null;
   populateBy?: ('collection' | 'selection') | null;
   relationTo?: 'posts' | null;
-  categories?: (number | Category)[] | null;
+  categories?: (string | Category)[] | null;
   limit?: number | null;
   selectedDocs?:
     | {
         relationTo: 'posts';
-        value: number | Post;
+        value: string | Post;
       }[]
     | null;
   id?: string | null;
@@ -565,7 +565,7 @@ export interface ArchiveBlock {
  * via the `definition` "FormBlock".
  */
 export interface FormBlock {
-  form: number | Form;
+  form: string | Form;
   enableIntro?: boolean | null;
   introContent?: {
     root: {
@@ -591,7 +591,7 @@ export interface FormBlock {
  * via the `definition` "forms".
  */
 export interface Form {
-  id: number;
+  id: string;
   title: string;
   fields?:
     | (
@@ -789,15 +789,15 @@ export interface GalleryBlock {
   /**
    * Choose how to populate gallery media
    */
-  dataSource?: ('all' | 'event' | 'selection') | null;
+  dataSource?: ('all' | 'event' | 'all-events' | 'selection') | null;
   /**
    * Select an event to show media for
    */
-  selectedEvent?: (number | null) | Event;
+  selectedEvent?: (string | null) | Event;
   /**
    * Select specific media items to display
    */
-  selectedMedia?: (number | Media)[] | null;
+  selectedMedia?: (string | Media)[] | null;
   /**
    * Choose the layout style for the gallery
    */
@@ -833,7 +833,7 @@ export interface SponsorsBlock {
  * via the `definition` "sponsors".
  */
 export interface Sponsor {
-  id: number;
+  id: string;
   name: string;
   /**
    * URL to the sponsor's website
@@ -842,7 +842,7 @@ export interface Sponsor {
   /**
    * Logo or image for the sponsor
    */
-  media: number | Media;
+  media: string | Media;
   /**
    * Optional description about the sponsor
    */
@@ -865,7 +865,7 @@ export interface Sponsor {
  * via the `definition` "redirects".
  */
 export interface Redirect {
-  id: number;
+  id: string;
   /**
    * You will need to rebuild the website when changing this field.
    */
@@ -875,11 +875,11 @@ export interface Redirect {
     reference?:
       | ({
           relationTo: 'pages';
-          value: number | Page;
+          value: string | Page;
         } | null)
       | ({
           relationTo: 'posts';
-          value: number | Post;
+          value: string | Post;
         } | null);
     url?: string | null;
   };
@@ -891,8 +891,8 @@ export interface Redirect {
  * via the `definition` "form-submissions".
  */
 export interface FormSubmission {
-  id: number;
-  form: number | Form;
+  id: string;
+  form: string | Form;
   submissionData?:
     | {
         field: string;
@@ -910,18 +910,18 @@ export interface FormSubmission {
  * via the `definition` "search".
  */
 export interface Search {
-  id: number;
+  id: string;
   title?: string | null;
   priority?: number | null;
   doc: {
     relationTo: 'posts';
-    value: number | Post;
+    value: string | Post;
   };
   slug?: string | null;
   meta?: {
     title?: string | null;
     description?: string | null;
-    image?: (number | null) | Media;
+    image?: (string | null) | Media;
   };
   categories?:
     | {
@@ -939,7 +939,7 @@ export interface Search {
  * via the `definition` "payload-jobs".
  */
 export interface PayloadJob {
-  id: number;
+  id: string;
   /**
    * Input data provided to the job
    */
@@ -1031,60 +1031,60 @@ export interface PayloadJob {
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: number;
+  id: string;
   document?:
     | ({
         relationTo: 'pages';
-        value: number | Page;
+        value: string | Page;
       } | null)
     | ({
         relationTo: 'posts';
-        value: number | Post;
+        value: string | Post;
       } | null)
     | ({
         relationTo: 'media';
-        value: number | Media;
+        value: string | Media;
       } | null)
     | ({
         relationTo: 'categories';
-        value: number | Category;
+        value: string | Category;
       } | null)
     | ({
         relationTo: 'events';
-        value: number | Event;
+        value: string | Event;
       } | null)
     | ({
         relationTo: 'sponsors';
-        value: number | Sponsor;
+        value: string | Sponsor;
       } | null)
     | ({
         relationTo: 'users';
-        value: number | User;
+        value: string | User;
       } | null)
     | ({
         relationTo: 'redirects';
-        value: number | Redirect;
+        value: string | Redirect;
       } | null)
     | ({
         relationTo: 'forms';
-        value: number | Form;
+        value: string | Form;
       } | null)
     | ({
         relationTo: 'form-submissions';
-        value: number | FormSubmission;
+        value: string | FormSubmission;
       } | null)
     | ({
         relationTo: 'search';
-        value: number | Search;
+        value: string | Search;
       } | null)
     | ({
         relationTo: 'payload-jobs';
-        value: number | PayloadJob;
+        value: string | PayloadJob;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
-    value: number | User;
+    value: string | User;
   };
   updatedAt: string;
   createdAt: string;
@@ -1094,10 +1094,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: number;
+  id: string;
   user: {
     relationTo: 'users';
-    value: number | User;
+    value: string | User;
   };
   key?: string | null;
   value?:
@@ -1117,7 +1117,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: number;
+  id: string;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -1751,7 +1751,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  * via the `definition` "header".
  */
 export interface Header {
-  id: number;
+  id: string;
   navItems?:
     | {
         link: {
@@ -1760,11 +1760,11 @@ export interface Header {
           reference?:
             | ({
                 relationTo: 'pages';
-                value: number | Page;
+                value: string | Page;
               } | null)
             | ({
                 relationTo: 'posts';
-                value: number | Post;
+                value: string | Post;
               } | null);
           url?: string | null;
           label: string;
@@ -1780,7 +1780,7 @@ export interface Header {
  * via the `definition` "footer".
  */
 export interface Footer {
-  id: number;
+  id: string;
   navItems?:
     | {
         link: {
@@ -1789,11 +1789,11 @@ export interface Footer {
           reference?:
             | ({
                 relationTo: 'pages';
-                value: number | Page;
+                value: string | Page;
               } | null)
             | ({
                 relationTo: 'posts';
-                value: number | Post;
+                value: string | Post;
               } | null);
           url?: string | null;
           label: string;
@@ -1861,14 +1861,14 @@ export interface TaskSchedulePublish {
     doc?:
       | ({
           relationTo: 'pages';
-          value: number | Page;
+          value: string | Page;
         } | null)
       | ({
           relationTo: 'posts';
-          value: number | Post;
+          value: string | Post;
         } | null);
     global?: string | null;
-    user?: (number | null) | User;
+    user?: (string | null) | User;
   };
   output?: unknown;
 }
