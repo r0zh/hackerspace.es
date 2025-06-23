@@ -49,3 +49,14 @@ export async function getAllMedia(): Promise<Media[]> {
 		sort: "createdAt",
 	});
 }
+
+export async function getAllEventMedia(): Promise<Media[]> {
+	return getMedia({
+		where: {
+			linkedEvent: {
+				exists: true,
+			},
+		},
+		sort: "createdAt",
+	});
+}
