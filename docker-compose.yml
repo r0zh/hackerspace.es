@@ -10,5 +10,5 @@ services:
     env_file:
       - .env
     volumes:
-      - /opt/hackersapce/storage:/home/node/app/storage
+      - /opt/hackerspace/storage:/home/node/app/storage
     restart: always
