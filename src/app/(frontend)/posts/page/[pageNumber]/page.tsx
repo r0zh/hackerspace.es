@@ -67,7 +67,7 @@ export async function generateMetadata({
 }: Args): Promise<Metadata> {
 	const { pageNumber } = await paramsPromise;
 	return {
-		title: `Payload Website Template Posts Page ${pageNumber || ""}`,
+		title: `Hackerspace.es Template Posts Page ${pageNumber || ""}`,
 	};
 }
 
