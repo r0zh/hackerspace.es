@@ -3,10 +3,11 @@ import { getServerSideURL } from "./getURL";
 
 const defaultOpenGraph: Metadata["openGraph"] = {
 	type: "website",
-	description: "An open-source website built with Payload and Next.js.",
+	description:
+		"Official website of Hackerspace.es, a community-driven hackerspace in Spain.",
 	images: [
 		{
-			url: `${getServerSideURL()}/website-template-OG.webp`,
+			url: `${getServerSideURL()}/website-preview.webp`,
 		},
 	],
 	siteName: "Hackerspace.es",
