@@ -5,6 +5,7 @@ import sharp from "sharp"; // sharp-import
 import path from "node:path";
 import { buildConfig, type PayloadRequest } from "payload";
 import { fileURLToPath } from "node:url";
+import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
 
 import { Categories } from "./collections/Categories";
 import { Events } from "./collections/Events";
@@ -91,4 +92,17 @@ export default buildConfig({
 		},
 		tasks: [],
 	},
+	email: nodemailerAdapter({
+		defaultFromAddress: "info@hackerspace.es",
+		defaultFromName: "Hackerspace info",
+		// Nodemailer transportOptions
+		transportOptions: {
+			host: process.env.SMTP_HOST,
+			port: process.env.SMTP_PORT,
+			auth: {
+				user: process.env.SMTP_USER,
+				pass: process.env.SMTP_PASS,
+			},
+		},
+	}),
 });
